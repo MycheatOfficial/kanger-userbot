@@ -25,3 +25,4 @@ emoji
 uuid
 ffmpeg
 meval
+opencv-python-headless
