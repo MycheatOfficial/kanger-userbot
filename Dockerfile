@@ -1,14 +1,16 @@
-FROM python:3
-
-ENV API_ID=34511761
-ENV API_HASH=e5442232b475787b085b4e59b3e4ac83
-
-RUN apt update && apt upgrade -y; apt-get install git curl zip neofetch ffmpeg -y
+FROM python:3.11-slim
 
 WORKDIR /app
 
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    zip \
+    ffmpeg \
+    && rm -rf /var/lib/apt/lists/*
+
 COPY . .
 
-RUN pip3 install --no-cache-dir -r req*
+RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["bash", "start.sh"]
+CMD ["python", "-m", "Kanger"]
